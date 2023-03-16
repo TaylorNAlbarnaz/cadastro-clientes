@@ -1,7 +1,6 @@
 import './ClientList.css';
-import Button from'react-bootstrap/Button';
 
-function ClientList() {
+function ClientList(props) {
   return (
     <div className='ClientList'>
       <div className='container'>
@@ -24,9 +23,9 @@ function ClientList() {
               <td>000.000.000-00</td>
               <td>cliente@hotmail.com</td>
               <td>(00)00000-0000</td>
-              <td> <ion-icon name="eye"></ion-icon> </td>
-              <td> <ion-icon name="build"></ion-icon> </td>
-              <td> <ion-icon name="trash"></ion-icon> </td>
+              <td> <ion-icon name="eye" onClick={props.onView}></ion-icon> </td>
+              <td> <ion-icon name="build" onClick={props.onEdit}></ion-icon> </td>
+              <td> <ion-icon name="trash" onClick={props.onDelete}></ion-icon> </td>
             </tr>
 
             <tr>
