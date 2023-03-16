@@ -1,1 +1,18 @@
+.container__tablehead {
+    background-color: #343a40;
+}
 
+.ClientList ion-icon {
+    transition: .3s;
+}
+
+.ClientList ion-icon:hover {
+    cursor: pointer;
+    color: #0d6efd;
+}
+
+@media screen and (max-width: 600px) {
+    .ClientList > * {
+        font-size: 0.6em;
+    }
+}
