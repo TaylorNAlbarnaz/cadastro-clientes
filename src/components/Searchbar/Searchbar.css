@@ -1,0 +1,13 @@
+.Searchbar span {
+    transition: .3s;
+}
+
+.Searchbar span:hover {
+    cursor: pointer;
+    background-color: #0d6efd;
+    color: white;
+}
+
+.Searchbar input {
+    min-width: 300px!important;
+}

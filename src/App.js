@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ClientList, Header } from './components';
+import { ClientList, Controls, Header } from './components';
 import { CreateClientModal, ViewClientModal, DeleteClientModal } from './components/Modals';
 
 function App() {
@@ -33,7 +33,8 @@ function App() {
 
   return (
     <>
-      <Header onCreate = {showCreateClientModal}/>
+      <Header/>
+      <Controls onCreate = {showCreateClientModal}/>
 
       <ClientList
         onView = {showViewClientModal}

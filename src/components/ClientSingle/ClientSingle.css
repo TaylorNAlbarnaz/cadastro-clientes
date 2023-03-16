@@ -1,1 +1,8 @@
+.ClientSingle ion-icon {
+    transition: .3s;
+}
 
+.ClientSingle ion-icon:hover {
+    cursor: pointer;
+    color: #0d6efd;
+}

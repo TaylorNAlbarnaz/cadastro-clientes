@@ -1,0 +1,26 @@
+.Controls > .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 10px;
+}
+
+.button-container {
+    display: flex;
+    width: 100%;
+
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 600px) {
+    .Header > .container {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .Header button {
+        width: 100vw;
+    }
+}

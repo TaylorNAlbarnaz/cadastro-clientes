@@ -1,4 +1,5 @@
 import './ClientList.css';
+import { ClientSingle } from '../';
 
 function ClientList(props) {
   return (
@@ -19,7 +20,7 @@ function ClientList(props) {
 
           <tbody>
             <tr>
-              <td>Cliente de Sobrenome Longo 1</td>
+              <td>Cliente de Sobrenome Longo</td>
               <td>000.000.000-00</td>
               <td>cliente@hotmail.com</td>
               <td>(00)00000-0000</td>
@@ -28,95 +29,15 @@ function ClientList(props) {
               <td> <ion-icon name="trash" onClick={props.onDelete}></ion-icon> </td>
             </tr>
 
-            <tr>
-              <td>Cliente de Sobrenome Longo 2</td>
-              <td>000.000.000-00</td>
-              <td>cliente@hotmail.com</td>
-              <td>(00)00000-0000</td>
-              <td> <ion-icon name="eye"></ion-icon> </td>
-              <td> <ion-icon name="build"></ion-icon> </td>
-              <td> <ion-icon name="trash"></ion-icon> </td>
-            </tr>
-
-            <tr>
-              <td>Cliente de Sobrenome Longo 3</td>
-              <td>000.000.000-00</td>
-              <td>cliente@hotmail.com</td>
-              <td>(00)00000-0000</td>
-              <td> <ion-icon name="eye"></ion-icon> </td>
-              <td> <ion-icon name="build"></ion-icon> </td>
-              <td> <ion-icon name="trash"></ion-icon> </td>
-            </tr>
-
-            <tr>
-              <td>Cliente de Sobrenome Longo 4</td>
-              <td>000.000.000-00</td>
-              <td>cliente@hotmail.com</td>
-              <td>(00)00000-0000</td>
-              <td> <ion-icon name="eye"></ion-icon> </td>
-              <td> <ion-icon name="build"></ion-icon> </td>
-              <td> <ion-icon name="trash"></ion-icon> </td>
-            </tr>
-
-            <tr>
-              <td>Cliente de Sobrenome Longo 5</td>
-              <td>000.000.000-00</td>
-              <td>cliente@hotmail.com</td>
-              <td>(00)00000-0000</td>
-              <td> <ion-icon name="eye"></ion-icon> </td>
-              <td> <ion-icon name="build"></ion-icon> </td>
-              <td> <ion-icon name="trash"></ion-icon> </td>
-            </tr>
-
-            <tr>
-              <td>Cliente de Sobrenome Longo 6</td>
-              <td>000.000.000-00</td>
-              <td>cliente@hotmail.com</td>
-              <td>(00)00000-0000</td>
-              <td> <ion-icon name="eye"></ion-icon> </td>
-              <td> <ion-icon name="build"></ion-icon> </td>
-              <td> <ion-icon name="trash"></ion-icon> </td>
-            </tr>
-
-            <tr>
-              <td>Cliente de Sobrenome Longo 7</td>
-              <td>000.000.000-00</td>
-              <td>cliente@hotmail.com</td>
-              <td>(00)00000-0000</td>
-              <td> <ion-icon name="eye"></ion-icon> </td>
-              <td> <ion-icon name="build"></ion-icon> </td>
-              <td> <ion-icon name="trash"></ion-icon> </td>
-            </tr>
-
-            <tr>
-              <td>Cliente de Sobrenome Longo 8</td>
-              <td>000.000.000-00</td>
-              <td>cliente@hotmail.com</td>
-              <td>(00)00000-0000</td>
-              <td> <ion-icon name="eye"></ion-icon> </td>
-              <td> <ion-icon name="build"></ion-icon> </td>
-              <td> <ion-icon name="trash"></ion-icon> </td>
-            </tr>
-
-            <tr>
-              <td>Cliente de Sobrenome Longo 9</td>
-              <td>000.000.000-00</td>
-              <td>cliente@hotmail.com</td>
-              <td>(00)00000-0000</td>
-              <td> <ion-icon name="eye"></ion-icon> </td>
-              <td> <ion-icon name="build"></ion-icon> </td>
-              <td> <ion-icon name="trash"></ion-icon> </td>
-            </tr>
-
-            <tr>
-              <td>Cliente de Sobrenome Longo 10</td>
-              <td>000.000.000-00</td>
-              <td>cliente@hotmail.com</td>
-              <td>(00)00000-0000</td>
-              <td> <ion-icon name="eye"></ion-icon> </td>
-              <td> <ion-icon name="build"></ion-icon> </td>
-              <td> <ion-icon name="trash"></ion-icon> </td>
-            </tr>
+            <ClientSingle/>
+            <ClientSingle/>
+            <ClientSingle/>
+            <ClientSingle/>
+            <ClientSingle/>
+            <ClientSingle/>
+            <ClientSingle/>
+            <ClientSingle/>
+            <ClientSingle/>
           </tbody>
         </table>
       </div>
