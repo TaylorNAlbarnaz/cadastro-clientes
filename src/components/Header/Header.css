@@ -12,3 +12,14 @@
     height: 100%;
     align-items: end;
 }
+
+@media screen and (max-width: 600px) {
+    .Header > .container {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .Header button {
+        width: 100vw;
+    }
+}
