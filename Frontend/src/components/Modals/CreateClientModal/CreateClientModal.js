@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import { format } from '../../../util/Utils';
 import InputMask from 'react-input-mask';
 
-
 function CreateClientModal(props) {
   // Fecha a janela chamado o evento onCLose no parent
   function closeWindow() {
@@ -12,17 +11,17 @@ function CreateClientModal(props) {
 
   // Atualiza os dados do usuário para edição
   useEffect(() => {
-    document.getElementById('nome').value = (props.cliente && props.editing) ? props.cliente.nome : '';
-    document.getElementById('nascimento').value = (props.cliente && props.editing) ? props.cliente.nascimento : '';
-    document.getElementById('cpf').value = (props.cliente && props.editing) ? props.cliente.cpf : '';
-    document.getElementById('celular').value = (props.cliente && props.editing) ? props.cliente.celular : '';
-    document.getElementById('email').value = (props.cliente && props.editing) ? props.cliente.email : '';
-    document.getElementById('endereco').value = (props.cliente && props.editing) ? props.cliente.endereco : '';
-    document.getElementById('observacoes').value = (props.cliente && props.editing) ? props.cliente.observacoes : '';
+    document.getElementById('cnome').value = (props.cliente && props.editing) ? props.cliente.nome : '';
+    document.getElementById('cnascimento').value = (props.cliente && props.editing) ? props.cliente.nascimento : '';
+    document.getElementById('ccpf').value = (props.cliente && props.editing) ? props.cliente.cpf : '';
+    document.getElementById('ccelular').value = (props.cliente && props.editing) ? props.cliente.celular : '';
+    document.getElementById('cemail').value = (props.cliente && props.editing) ? props.cliente.email : '';
+    document.getElementById('cendereco').value = (props.cliente && props.editing) ? props.cliente.endereco : '';
+    document.getElementById('cobservacoes').value = (props.cliente && props.editing) ? props.cliente.observacoes : '';
 
     // Formata o CPF e o Celular
-    document.getElementById('cpf').value = format(document.getElementById('cpf').value, '###.###.###-##');
-    document.getElementById('celular').value = format(document.getElementById('celular').value, '(##) # ####-####');
+    document.getElementById('ccpf').value = format(document.getElementById('ccpf').value, '###.###.###-##');
+    document.getElementById('ccelular').value = format(document.getElementById('ccelular').value, '(##) # ####-####');
   }, [props.cliente])
 
   // Função chamada quando o botão de criar cliente for clicado
@@ -52,7 +51,7 @@ function CreateClientModal(props) {
               <label htmlFor='nome'><h6>Nome</h6></label>
               <input
                 type='text'
-                id='nome'
+                id='cnome'
                 name='nome'
                 placeholder='Nome'
                 className='form-control'
@@ -66,7 +65,7 @@ function CreateClientModal(props) {
               <label htmlFor='nascimento'><h6>Data de Nascimento</h6></label>
               <input
                 type='date'
-                id='nascimento'
+                id='cnascimento'
                 name='nascimento'
                 placeholder='Nascimento'
                 className='form-control'
@@ -78,7 +77,7 @@ function CreateClientModal(props) {
             <div className='form-group'>
               <label htmlFor='cpf'><h6>CPF</h6></label>
               <InputMask
-                id='cpf'
+                id='ccpf'
                 name='cpf'
                 mask='999.999.999-99'
                 className='form-control'
@@ -91,7 +90,7 @@ function CreateClientModal(props) {
             <div className='form-group'>
               <label htmlFor='celular'><h6>Celular</h6></label>
               <InputMask
-                id='celular'
+                id='ccelular'
                 name='celular'
                 mask='(99) 9 9999-9999'
                 className='form-control'
@@ -105,7 +104,7 @@ function CreateClientModal(props) {
               <label htmlFor='email'><h6>E-mail</h6></label>
               <input
                 type='text'
-                id='email'
+                id='cemail'
                 name='email'
                 placeholder='E-mail'
                 className='form-control'
@@ -118,7 +117,7 @@ function CreateClientModal(props) {
               <label htmlFor='endereço'><h6>Endereço</h6></label>
               <input
                 type='text'
-                id='endereco'
+                id='cendereco'
                 name='endereco'
                 placeholder='Endereço'
                 className='form-control'
@@ -130,7 +129,7 @@ function CreateClientModal(props) {
             <div className='form-group'>
               <label htmlFor='observacao'><h6>Observações</h6></label>
               <textarea
-                id='observacoes'
+                id='cobservacoes'
                 name='observacoes'
                 placeholder='Observações'
                 className='form-control'

@@ -34,13 +34,17 @@ function App() {
   // Seta o showView para true, deixando o ViewClientModel visível
   async function showViewClientModal(id) {
     setShowView(true);
-    setCliente(await getCliente(id));
+
+    const cliente = await getCliente(id);
+    setCliente(cliente);
   }
 
   // Seta o showDelete para true, deixando o DeleteClientModel visível
   async function showDeleteClientModal(id) {
     setShowDelete(true);
-    setCliente(await getCliente(id));
+    
+    const cliente = await getCliente(id);
+    setCliente(cliente);
   }
 
   return (
