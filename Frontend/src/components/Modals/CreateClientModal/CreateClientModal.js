@@ -46,7 +46,7 @@ function CreateClientModal(props) {
   }
 
   // Função chamada quando o botão de atualizar cliente for clicado
-  async function updateCliente(e) {
+  function updateCliente(e) {
     e.preventDefault();
 
     const clienteAtualizado = {
@@ -60,14 +60,13 @@ function CreateClientModal(props) {
       observacoes: document.getElementById('cobservacoes').value,
     }
 
-    console.log("Atualizado cliente " + props.cliente.id + " com dados: ", clienteAtualizado);
-
     if (validarCliente(clienteAtualizado)) {
       // Atualiza o cliente, reseta todos inputs, fecha a janela e atualiza a lista
       atualizarCliente(clienteAtualizado);
       resetInputs();
       closeWindow();
-      props.onUpdate();
+      
+      setTimeout(props.onUpdate(), 300);
     }
   }
 
@@ -75,6 +74,11 @@ function CreateClientModal(props) {
   function validarCliente(cliente) {
     if (cliente.nome.length < 4) {
       setErro("Nome muito curto!");
+      return false;
+    }
+    
+    if (!/^[a-zA-Z ]+$/.test(cliente.nome)) {
+      setErro("Apenas letras são permitidas no nome!");
       return false;
     }
 
@@ -142,7 +146,6 @@ function CreateClientModal(props) {
                 name='nome'
                 placeholder='Nome'
                 className='form-control'
-
                 required
               ></input>
             </div>
