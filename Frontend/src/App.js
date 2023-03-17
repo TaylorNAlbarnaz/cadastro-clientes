@@ -1,4 +1,4 @@
-import { useState, useRef, createRef } from 'react';
+import { useState, useEffect } from 'react';
 import { ClientList, Controls, Header } from './components';
 import { CreateClientModal, ViewClientModal, DeleteClientModal } from './components/Modals';
 import { getCliente } from './services/ClienteService';
@@ -13,6 +13,7 @@ function App() {
   const [showDelete, setShowDelete] = useState(false);
 
   const [editing, setEditing] = useState(false);
+  const [update, setUpdate] = useState(0);
 
   // Seta o showCreate para true, eixando o CreateClientModal visível
   function showCreateClientModal() {
@@ -47,6 +48,12 @@ function App() {
     setCliente(cliente);
   }
 
+  function updateDatabase() {
+    console.log(update);
+    setUpdate(update + 1);
+    console.log(update);
+  }
+
   return (
     <>
       <Header/>
@@ -56,23 +63,26 @@ function App() {
         onView = {(id) => showViewClientModal(id)}
         onEdit = {(id) => showEditClientModal(id)}
         onDelete = {(id) => showDeleteClientModal(id)}
+        updateDatabase = {update}
       />
 
       <CreateClientModal
-        show={showCreate}
-        editing={editing}
-        cliente={cliente}
-        onClose={() => setShowCreate(false)}
+        show = {showCreate}
+        editing = {editing}
+        cliente = {cliente}
+        onClose = {() => setShowCreate(false)}
+        onUpdate = {() => updateDatabase()}
       />
 
       <ViewClientModal
-        show={showView} onClose={() => setShowView(false)}
-        cliente={cliente}
+        show = {showView} onClose={() => setShowView(false)}
+        cliente = {cliente}
       />
 
       <DeleteClientModal
-        show={showDelete} onClose={() => setShowDelete(false)}
-        cliente={cliente}
+        show = {showDelete} onClose={() => setShowDelete(false)}
+        cliente = {cliente}
+        onUpdate = {() => updateDatabase()}
       />
     </>
   );

@@ -1,6 +1,7 @@
 import './CreateClientModal.css';
 import { useEffect } from 'react';
-import { format } from '../../../util/Utils';
+import { format, unformat } from '../../../util/Utils';
+import { criarCliente, atualizarCliente } from '../../../services/ClienteService';
 import InputMask from 'react-input-mask';
 
 function CreateClientModal(props) {
@@ -27,13 +28,57 @@ function CreateClientModal(props) {
   // Função chamada quando o botão de criar cliente for clicado
   function createCliente(e) {
     e.preventDefault();
-    console.log('createClient');
+    
+    const novoCliente = {
+      nome: document.getElementById('cnome').value,
+      nascimento: document.getElementById('cnascimento').value,
+      cpf: unformat(document.getElementById('ccpf').value),
+      celular: unformat(document.getElementById('ccelular').value),
+      email: document.getElementById('cemail').value,
+      endereco: document.getElementById('cendereco').value,
+      observacoes: document.getElementById('cobservacoes').value,
+    }
+
+    // Cria o cliente, reseta todos inputs, fecha a janela e atualiza a lista
+    criarCliente(novoCliente);
+    resetInputs();
+    closeWindow();
+    props.onUpdate();
   }
 
   // Função chamada quando o botão de atualizar cliente for clicado
-  function updateCliente(e) {
+  async function updateCliente(e) {
     e.preventDefault();
-    console.log('updateClient');
+
+    const clienteAtualizado = {
+      id: props.cliente.id,
+      nome: document.getElementById('cnome').value,
+      nascimento: document.getElementById('cnascimento').value,
+      cpf: unformat(document.getElementById('ccpf').value),
+      celular: unformat(document.getElementById('ccelular').value),
+      email: document.getElementById('cemail').value,
+      endereco: document.getElementById('cendereco').value,
+      observacoes: document.getElementById('cobservacoes').value,
+    }
+
+    console.log("Atualizado cliente " + props.cliente.id + " com dados: ", clienteAtualizado);
+
+    // Atualiza o cliente, reseta todos inputs, fecha a janela e atualiza a lista
+    atualizarCliente(clienteAtualizado);
+    resetInputs();
+    closeWindow();
+    props.onUpdate();
+  }
+
+  // Função que reseta todos os campos de input
+  function resetInputs() {
+    document.getElementById('cnome').value = '';
+    document.getElementById('cnascimento').value = '';
+    document.getElementById('ccpf').value = '';
+    document.getElementById('ccelular').value = '';
+    document.getElementById('cemail').value = '';
+    document.getElementById('cendereco').value = '';
+    document.getElementById('cobservacoes').value = '';
   }
 
   return (

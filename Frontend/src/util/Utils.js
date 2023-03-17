@@ -8,3 +8,11 @@ export function format(value, pattern) {
 
     return pattern.replace(/#/g, _ => v[i++]);
 }
+
+export function unformat(value) {
+    if (value == '' || value == null) {
+        return value;
+    }
+    
+    return value.replace(/\D/g, "");
+}

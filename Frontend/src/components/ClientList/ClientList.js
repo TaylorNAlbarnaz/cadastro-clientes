@@ -8,12 +8,20 @@ function ClientList(props) {
 
   useEffect(() => {
     // Pega os primeiros 10 clientes ao carregar a página
-    async function fetchData() {
-      const data = await getClientes();
-      setClientes(data);
-    }
-    fetchData();
+    carregarDados();
   }, []);
+
+  useEffect(() => {
+    // Recarrega a lista caso a database seja atualizada
+    console.log("updateDatabase useEffect");
+    carregarDados();
+  }, [props.updateDatabase])
+
+  async function carregarDados() {
+    console.log("carregarDados");
+    const data = await getClientes();
+    setClientes(data);
+  }
 
   return (
     <div className='ClientList'>
