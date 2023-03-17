@@ -50,8 +50,6 @@ class RestAPI {
         $query = $db->prepare("INSERT INTO clientes (nome, nascimento, cpf, celular, email, endereco, observacoes)
             VALUES (:nome, :nascimento, :cpf, :celular, :email, :endereco, :observacoes)");
 
-        var_dump($cliente);
-
         // Executa a query, adicionando um novo cliente na database
         $query->execute(array(
             ':nome' => $cliente->nome,
