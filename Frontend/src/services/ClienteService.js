@@ -64,3 +64,18 @@ export async function atualizarCliente(cliente) {
         console.error(error);
     }
 }
+
+// Tenta remover um cliente na database
+export async function removerCliente(id) {
+    try {
+        await fetch(`${URL}/?id=${id}`, {
+            method: 'delete',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
+    } catch (error) {
+        console.error(error);
+    }
+}

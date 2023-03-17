@@ -1,7 +1,7 @@
 import './ClientList.css';
 import { useState, useEffect } from 'react';
 import { ClientSingle } from '../';
-import { getClientes } from '../../services/ClienteService';
+import { getClientes, procurarClientes } from '../../services/ClienteService';
 
 function ClientList(props) {
   const [clientes, setClientes] = useState([]);
@@ -13,13 +13,25 @@ function ClientList(props) {
 
   useEffect(() => {
     // Recarrega a lista caso a database seja atualizada
-    console.log("updateDatabase useEffect");
     carregarDados();
   }, [props.updateDatabase])
 
+  useEffect(() => {
+    // Procura pelos dados do cliente sempre que a query for modificada, a menos que ela seja nula
+    if (props.query != null) {
+      pesquisarDados();
+    } else {
+      carregarDados();
+    }
+  }, [props.query])
+
   async function carregarDados() {
-    console.log("carregarDados");
     const data = await getClientes();
+    setClientes(data);
+  }
+
+  async function pesquisarDados() {
+    const data = await procurarClientes(props.query);
     setClientes(data);
   }
 

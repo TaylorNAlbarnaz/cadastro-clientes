@@ -1,16 +1,18 @@
 import './DeleteClientModal.css';
-import { useState, useEffect } from 'react';
+import { removerCliente } from '../../../services/ClienteService';
 
 function DeleteClientModal(props) {
-  const [cliente, setCliente] = useState();
+  // Caso confirmado, deleta o usuário selecionado, fecha tela e atualiza a lista
+  function deletarCliente() {
+    removerCliente(props.cliente.id);
+    closeWindow();
+    props.onUpdate();
+  }
 
   // Fecha a janela chamado o evento onCLose no parent
   function closeWindow() {
     props.onClose();
   }
-
-  // Seta a variável cliente para a propriedade sempre que o componente for atualizado
-  useEffect(() => setCliente(props.cliente));
 
   return (
     <div className='DeleteClientModal' style={{'display': props.show ? 'flex' : 'none'}}>
@@ -23,7 +25,7 @@ function DeleteClientModal(props) {
         {/* Botões para Excluir ou Cancelar */}
         <div>Tem certeza que deseja excluir esse cadastro?</div>
         <div className='buttons'>
-          <button className='btn btn-danger' onClick={() => closeWindow()}>Excluir</button>
+          <button className='btn btn-danger' onClick={() => deletarCliente()}>Excluir</button>
           <button className='btn btn-secondary' onClick={() => closeWindow()}>Cancelar</button>
         </div>
       </div>

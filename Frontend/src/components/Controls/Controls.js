@@ -7,7 +7,7 @@ function Controls(props) {
     <div className='Controls'>
       <div className='container'>
         <div className='button-container'>
-          <Searchbar />
+          <Searchbar onSearch={props.onSearch}/>
 
           <Button onClick={props.onCreate}>Novo Cliente</Button>
         </div>

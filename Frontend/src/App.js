@@ -4,8 +4,9 @@ import { CreateClientModal, ViewClientModal, DeleteClientModal } from './compone
 import { getCliente } from './services/ClienteService';
 
 function App() {
-  // Cliente atualmente sendo modificado ou criado
+  // Cliente atualmente sendo modificado ou criado e query de pesquisa
   const [cliente, setCliente] = useState();
+  const [query, setQuery] = useState();
 
   // Variáveis para controlar quais telas são mostradas
   const [showCreate, setShowCreate] = useState(false);
@@ -49,21 +50,27 @@ function App() {
   }
 
   function updateDatabase() {
-    console.log(update);
     setUpdate(update + 1);
-    console.log(update);
+  }
+
+  function procurarClientes(searchquery) {
+    setQuery(searchquery);
   }
 
   return (
     <>
       <Header/>
-      <Controls onCreate = {showCreateClientModal}/>
+      <Controls
+        onCreate = {showCreateClientModal}
+        onSearch = {(searchquery) => procurarClientes(searchquery)}
+      />
 
       <ClientList
         onView = {(id) => showViewClientModal(id)}
         onEdit = {(id) => showEditClientModal(id)}
         onDelete = {(id) => showDeleteClientModal(id)}
         updateDatabase = {update}
+        query = {query}
       />
 
       <CreateClientModal
