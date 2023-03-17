@@ -1,70 +1,23 @@
-# Getting Started with Create React App
+# Sistema de Cadastro de Clientes para Teste Prático
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Esse projeto foi feito para a realização do teste prático para estágio em desenvolvimento web da NewM.
+Ele consiste em uma aplicação web completa incluindo frontend, backend e banco de dados, foi feita utilizando **HTML, CSS e Javascript** para o frontend como solicitado, além do framework **React** e **Bootstrap 5**. para o backend foi utilizado **PHP com PDO** para a comunicação com o banco de dados em **MySQL**.
 
-## Available Scripts
+O projeto possui adição, remoção, atualização e listagem de cadastros, além de pesquisa através de um filtro textural nos campos nome e e-mail.
+Como solicitado para o teste:
+- Banco de dados feito a mão e não gerado pela IDE.
+- Todas as ações são feitas exclusivamente por AJAX(no caso fetch, visto que usei React e não jQuery).
+- PHP totalmente separado do frontend, sem manipulação de interface.
+- Manipulação de bancos de dados feita puramente por PDO e SQL.
+- Código comentado onde necessário.
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Como iniciar o projeto
+O projeto utiliza Xampp para rodar um servidor local e o banco de dados MySQL, por isso é necessário instalá-lo primeiro, seguiremos os passos:
+1) Instalar o Xampp através de https://www.apachefriends.org/download.html
+2) Instalar o Backend em php, para isso é necessário ir na pasta base do Xampp, localizava em C:\xampp, remover tudo que estiver dentro da pasta "htdocs" e colocar lá os arquivos que estão localizados na pasta Backend, no final você deve ter o arquivo index.php dentro da pasta htdocs
+3) Configurar a database, para isso é preciso abrir o Xampp Control Panel e inicializar os módulos Apache e MySQL, depois abrir o painel Admin
+4) Com o phpMyAdmin aberto, crie um banco de dados novo chamado "cadastros", para isso vá em Novo no menu esquerdo da tela, e depois coloque "cadastros" no campo **Nome do banco de dados** e clique em criar
+5) Após isso selecione o banco de dados recem criado e vá em "Importar" no canto superior da tela, clique em selecionar arquivo, selecione o arquivo "cadastros.sql" dentro da pasta Database do projeto e depois clique em **Importar** no canto inferior da tela para importar todas as tabelas.
+6) Com isso o Backend e a Database já estão perfeitamente configurados, para iniciar o frontend certifique-se de ter o Node Package Manager instalado na sua máquina, abra a pasta "Frontend" com Visual Studio Code e abre o terminal com ela aberta, ou abra um terminal diretamente dentro da pasta.
+7) Com o terminal aberto primeiro execute o comando "npm update" para baixar todos os pacotes necessários para rodar a aplicação
+8) Após isso rode "npm start" e a aplicação irá abrir automaticamente no seu navegador, também podendo ser acessada em http://localhost:3000/
