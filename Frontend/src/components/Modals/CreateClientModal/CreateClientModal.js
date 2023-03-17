@@ -1,14 +1,11 @@
 import './CreateClientModal.css';
-import { useEffect } from 'react';
-import { format, unformat } from '../../../util/Utils';
+import { useEffect, useState } from 'react';
+import { format, unformat, cpf } from '../../../util/Utils';
 import { criarCliente, atualizarCliente } from '../../../services/ClienteService';
 import InputMask from 'react-input-mask';
 
 function CreateClientModal(props) {
-  // Fecha a janela chamado o evento onCLose no parent
-  function closeWindow() {
-    props.onClose();
-  }
+  const [erro, setErro] = useState(null);
 
   // Atualiza os dados do usuário para edição
   useEffect(() => {
@@ -39,11 +36,13 @@ function CreateClientModal(props) {
       observacoes: document.getElementById('cobservacoes').value,
     }
 
-    // Cria o cliente, reseta todos inputs, fecha a janela e atualiza a lista
-    criarCliente(novoCliente);
-    resetInputs();
-    closeWindow();
-    props.onUpdate();
+    if (validarCliente(novoCliente)) {
+      // Cria o cliente, reseta todos inputs, fecha a janela e atualiza a lista
+      criarCliente(novoCliente);
+      resetInputs();
+      closeWindow();
+      props.onUpdate();
+    }
   }
 
   // Função chamada quando o botão de atualizar cliente for clicado
@@ -63,11 +62,48 @@ function CreateClientModal(props) {
 
     console.log("Atualizado cliente " + props.cliente.id + " com dados: ", clienteAtualizado);
 
-    // Atualiza o cliente, reseta todos inputs, fecha a janela e atualiza a lista
-    atualizarCliente(clienteAtualizado);
-    resetInputs();
-    closeWindow();
-    props.onUpdate();
+    if (validarCliente(clienteAtualizado)) {
+      // Atualiza o cliente, reseta todos inputs, fecha a janela e atualiza a lista
+      atualizarCliente(clienteAtualizado);
+      resetInputs();
+      closeWindow();
+      props.onUpdate();
+    }
+  }
+
+  // Valida se todos os dados estão corretos
+  function validarCliente(cliente) {
+    if (cliente.nome.length < 4) {
+      setErro("Nome muito curto!");
+      return false;
+    }
+
+    if (unformat(cliente.nascimento).length > 8) {
+      setErro("Insira uma data válida!");
+      return false;
+    }
+
+    if (!cpf(unformat(cliente.cpf))) {
+      setErro("Insira um CPF válido!");
+      return false;
+    }
+
+    if (cliente.celular.length > 11 || cliente.celular.length < 11) {
+      setErro("Insira um número de celular válido!");
+      return false;
+    }
+
+    if (cliente.email.length < 4) {
+      setErro("Insira um email válido!");
+      return false;
+    }
+
+    if (cliente.endereco.length < 4) {
+      setErro("Insira um endereco válido!");
+      return false;
+    }
+
+    return true;
   }
 
   // Função que reseta todos os campos de input
@@ -79,6 +115,12 @@ function CreateClientModal(props) {
     document.getElementById('cemail').value = '';
     document.getElementById('cendereco').value = '';
     document.getElementById('cobservacoes').value = '';
+  }
+
+  // Fecha a janela chamado o evento onCLose no parent e remove o erro
+  function closeWindow() {
+    props.onClose();
+    setErro(null);
   }
 
   return (
@@ -148,7 +190,7 @@ function CreateClientModal(props) {
             <div className='form-group'>
               <label htmlFor='email'><h6>E-mail</h6></label>
               <input
-                type='text'
+                type='email'
                 id='cemail'
                 name='email'
                 placeholder='E-mail'
@@ -180,6 +222,11 @@ function CreateClientModal(props) {
                 className='form-control'
                 rows='3'
               ></textarea>
+            </div>
+
+            {/* Erros de Validação */}
+            <div className='form-group'>
+              <p> {erro} </p>
             </div>
 
             {/* Salvar */}
