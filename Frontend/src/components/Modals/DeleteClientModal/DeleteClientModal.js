@@ -1,11 +1,16 @@
 import './DeleteClientModal.css';
-import Button from'react-bootstrap/Button';
+import { useState, useEffect } from 'react';
 
 function DeleteClientModal(props) {
+  const [cliente, setCliente] = useState();
+
   // Fecha a janela chamado o evento onCLose no parent
   function closeWindow() {
     props.onClose();
   }
+
+  // Seta a variável cliente para a propriedade sempre que o componente for atualizado
+  useEffect(() => setCliente(props.cliente));
 
   return (
     <div className='DeleteClientModal' style={{'display': props.show ? 'flex' : 'none'}}>

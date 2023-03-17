@@ -1,7 +1,20 @@
 import './ClientList.css';
+import { useState, useEffect } from 'react';
 import { ClientSingle } from '../';
+import { getClientes } from '../../services/ClienteService';
 
 function ClientList(props) {
+  const [clientes, setClientes] = useState([]);
+
+  useEffect(() => {
+    // Pega os primeiros 10 clientes ao carregar a página
+    async function fetchData() {
+      const data = await getClientes();
+      setClientes(data);
+    }
+    fetchData();
+  }, []);
+
   return (
     <div className='ClientList'>
       <div className='container'>
@@ -19,25 +32,16 @@ function ClientList(props) {
           </thead>
 
           <tbody>
-            <tr>
-              <td>Cliente de Sobrenome Longo</td>
-              <td>000.000.000-00</td>
-              <td>cliente@hotmail.com</td>
-              <td>(00)00000-0000</td>
-              <td> <ion-icon name="eye" onClick={props.onView}></ion-icon> </td>
-              <td> <ion-icon name="build" onClick={props.onEdit}></ion-icon> </td>
-              <td> <ion-icon name="trash" onClick={props.onDelete}></ion-icon> </td>
-            </tr>
-
-            <ClientSingle/>
-            <ClientSingle/>
-            <ClientSingle/>
-            <ClientSingle/>
-            <ClientSingle/>
-            <ClientSingle/>
-            <ClientSingle/>
-            <ClientSingle/>
-            <ClientSingle/>
+            {clientes.map((cliente) => {
+            return (
+              <ClientSingle
+                key={cliente.id}
+                cliente={cliente}
+                onView = {() => props.onView(cliente.id)}
+                onEdit = {() => props.onEdit(cliente.id)}
+                onDelete = {() => props.onDelete(cliente.id)}  
+              />
+            )})}
           </tbody>
         </table>
       </div>

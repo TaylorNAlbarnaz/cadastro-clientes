@@ -116,7 +116,7 @@ class RestAPI {
         $clientes = array();
         while ($OutputData = $query->fetch(PDO::FETCH_ASSOC))
         {
-            $clientes[$OutputData['id']] = array(
+            $clientes[] = array(
                 'id'            => $OutputData['id'],
                 'nome'          => $OutputData['nome'],
                 'nascimento'    => $OutputData['nascimento'],
